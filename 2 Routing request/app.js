@@ -1,10 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 
-console.log('i was here'); // cnt // add this to see changes
+console.log('i was here'); 
 
 function requestHandler(req, res) {
-  console.log('request recevied',req.url, req.method, req.headers);
+  console.log('request received',req.url, req.method, req.headers);
   res.setHeader('Content-Type', 'text/html');
  if(req.url === '/'){
   res.write(`<!DOCTYPE html>
@@ -27,11 +27,20 @@ function requestHandler(req, res) {
   }
   else if(req.url === '/buy-product'){
     console.log('buy product data request received');
+    const arr = [];
+    req.on('data', (chunk) => {
+      console.log(chunk);
+      arr.push(chunk);
+    });
+    req.on('end', () => {
+      const body = Buffer.concat(arr).toString(); 
+      console.log(body);
+    });
+    
     fs.writeFileSync('buy.txt', 'Myntra app');
     res.statusCode = 302;
     res.setHeader('Location', '/products');
-
-    
+    console.log('sending response');
   }
   else if(req.url === '/products'){
      res.write(`<!DOCTYPE html>
