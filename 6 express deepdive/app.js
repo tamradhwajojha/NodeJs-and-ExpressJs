@@ -1,8 +1,10 @@
 const fs = require('fs');
 const { URLSearchParams } = require('url');
+const bodyParser = require('body-parser');
 //external module
 const express = require('express');
 const app = express();
+app.use(bodyParser.urlencoded());
 app.use((req, res, next) => {
     console.log('request received', req.method, req.url);
     next();
@@ -27,28 +29,13 @@ app.get('/', (req, res, next) => {
 </html>`);
     });
 app.post('/buy-product', (req, res, next) => {
-   
-  console.log('buy product data request received');
-      const arr = [];
-      req.on('data', (chunk) => {
-        console.log(chunk);
-        arr.push(chunk);
-      });
-      req.on('end', () => {
-        const body = Buffer.concat(arr).toString(); 
-        const URLparams = new URLSearchParams(body);
-        const jsonObject = {};
-        for(const [key, value] of URLparams.entries()) {
-          jsonObject[key] = value;
-        }
-        console.log('jsonObject', jsonObject);
-        fs.writeFile('buy.txt', JSON.stringify(jsonObject), (err)=>{
+        console.log('jsonObject', req.body);
+        fs.writeFile('buy.json', JSON.stringify(req.body), (err)=>{
           res.statusCode = 302;
         res.setHeader('Location', '/products');
         res.end();
         console.log('sending response');
         }); 
-      });
 });
 app.get('/products', (req, res, next) => {
      res.send(`<!DOCTYPE html>
