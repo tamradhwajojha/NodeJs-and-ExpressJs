@@ -1,0 +1,56 @@
+<%- include('../partials/head') %>
+</head>
+<body class="min-h-screen p-8 font-sans bg-gradient-to-br from-blue-50 to-indigo-100">
+  <%- include ('../partials/nav') %>
+  <main>
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">
+        Welcome to <span class="text-rose-500">Humara Airbnb</span>
+      </h1>
+      <div class="flex flex-wrap gap-8 justify-center">
+        <% homes.forEach((home, idx) => { %>
+          <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-80 flex flex-col border border-gray-200 overflow-hidden">
+            <img 
+              src="<%= home.photo %>" 
+              alt="<%= home.houseName %> photo" 
+              class="h-48 w-full object-cover"
+              onerror="this.onerror=null;this.src='https://via.placeholder.com/320x192?text=No+Image';"
+            >
+            <div class="p-6 flex flex-col flex-1">
+              <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= home.houseName %></h2>
+              <div class="flex items-center mb-3">
+                <span class="inline-block bg-gradient-to-r from-rose-500 to-pink-500 w-10 h-1 rounded-full mr-2"></span>
+                <span class="text-sm text-gray-500">#<%= idx + 1 %></span>
+              </div>
+              <div class="flex flex-col gap-2 flex-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600 font-medium">Location:</span>
+                  <span class="text-gray-800"><%= home.location %></span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600 font-medium">Price:</span>
+                  <span class="text-rose-600 font-bold text-lg">₹<%= home.price %> / night</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600 font-medium">Rating:</span>
+                  <span class="flex items-center">
+                    <span class="text-yellow-400 mr-1">
+                      <svg class="w-5 h-5 inline" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/>
+                      </svg>
+                    </span>
+                    <span class="text-gray-800 font-semibold"><%= home.rating %></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <% if (!homes || homes.length === 0) { %>
+        <div class="text-center text-gray-500 mt-16 text-lg">No homes available yet. Be the first to add your home!</div>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>
