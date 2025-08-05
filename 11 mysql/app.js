@@ -11,15 +11,6 @@ const storeRouter = require("./routers/storeRouter");
 const rootDir = require("./util/path-util");
 const errorController = require('./controllers/errorController');
 
-const airbnbdb = require('./util/database-util');
-
-airbnbdb.execute('SELECT * FROM homes').then(([row, fields])=>{
-  console.log(row); // Assuming data[0] contains the rows returned from the query
-})
-
-
-
-
 
 const app = express();
 app.set('view engine', 'ejs');
