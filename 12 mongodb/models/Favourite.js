@@ -15,6 +15,7 @@ module.exports = class Favourite {
       }
     })
   }
+  //jhjhgfdfh
 
   static addToFavourites(homeId, callback) {
     Favourite.fetchAll(favouriteIds => {
