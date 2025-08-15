@@ -4,24 +4,24 @@ const url = "mongodb+srv://root:Tamradhwaj%403@cluster0.lxwzmmv.mongodb.net/airb
 
 let _db;
 
-const MongoConnect = (callback) => {
-MongoClient.connect(url)
-.then(client => {
+const mongoConnect = (callback) => {
+  MongoClient.connect(url)
+  .then((client) => {
     console.log(client);
     _db = client.db("airbnb");
-    callback(); 
-})
-.catch(err => {
-    console.error("Failed to connect to MongoDB", err);
-});
+    callback();
+  })
+  .catch(error => {
+    console.log('Error came while connecting to mongoDB ', error);
+  });
 };
 
 const getDb = () => {
-  if (_db) {
-    return _db;
+  if (!_db) {
+    throw new Error('Could not connect to DB')
   }
-  throw new Error("No database found!");
+  return _db;
 }
 
-exports.MongoConnect = MongoConnect;
+exports.mongoConnect = mongoConnect;
 exports.getDb = getDb;
