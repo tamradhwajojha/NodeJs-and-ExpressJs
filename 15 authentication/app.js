@@ -17,7 +17,8 @@ const errorController = require("./controllers/errorController");
 
 const MongoDbStore = mongodb_session(session);
 const MONGO_DB_URL =
-  "mongodb+srv://root:Tamradhwaj%403@cluster0.lxwzmmv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  "mongodb+srv://root:Tamradhwaj%403@cluster0.lxwzmmv.mongodb.net/airbnb?retryWrites=true&w=majority";
+
 
 const sessionStore = new MongoDbStore({
   uri: MONGO_DB_URL,
