@@ -26,6 +26,6 @@ app.use(errorController.get404);
 const PORT = 3001;
 mongoConnect(() => {
   app.listen(PORT, () => {
-    console.log(`Server running at: http://localhost:${PORT}`);
+    console.log(`Server running at on : http://localhost:${PORT}`);
   });
 });
