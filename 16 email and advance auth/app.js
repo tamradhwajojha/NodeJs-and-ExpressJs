@@ -1,7 +1,7 @@
 // Core Moduless
 const path = require("path");
 
-// External Module
+// External Modules
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
