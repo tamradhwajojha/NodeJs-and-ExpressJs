@@ -1,4 +1,4 @@
-// Core Module
+// Core Modules
 const path = require("path");
 
 // External Modules
