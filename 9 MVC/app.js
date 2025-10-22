@@ -26,7 +26,7 @@ app.use(storeRouter);
 app.use("/host",hostRouter);
 app.use(errorController.get404); // Use the error controller for handling 404 errors
 
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
