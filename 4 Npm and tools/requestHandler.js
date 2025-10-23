@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { URLSearchParams } = require('url');
-
+// revise this to understand the handler
 function requestHandler(req, res) {
   console.log('request received',req.url, req.method, req.headers);
   res.setHeader('Content-Type', 'text/html');
