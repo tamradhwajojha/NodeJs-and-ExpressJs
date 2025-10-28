@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 //external modules
 const express = require('express'); 
+const express = require('express');
 
 const rootDir = require('./util/path-util'); // Assuming path-util.js is in the util directory
 const app = express();
